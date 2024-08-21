@@ -32,12 +32,15 @@
             font-weight: bold;
             margin-bottom: 10px;
             opacity: 0; /* Start hidden */
-            animation: fadeInTitle 0.5s forwards; /* Fade-in effect for the title */
-            animation-delay: 1.5s; /* Delay before the title starts fading in */
+            animation: fadeInTitle 1s forwards; /* Fade-in effect for the title */
+            animation-delay: 0.5s; /* Delay before the title starts fading in */
         }
 
         @keyframes fadeInTitle {
-            to {
+            0% {
+                opacity: 0;
+            }
+            100% {
                 opacity: 1;
             }
         }
@@ -46,12 +49,15 @@
             font-size: 1em;
             margin-bottom: 20px;
             opacity: 0; /* Start hidden */
-            animation: fadeInSubtitle 2s forwards; /* Fade-in effect for the subtitle */
-            animation-delay: 4s; /* Delay before the subtitle starts fading in */
+            animation: fadeInSubtitle 1s forwards; /* Fade-in effect for the subtitle */
+            animation-delay: 1s; /* Delay before the subtitle starts fading in */
         }
 
         @keyframes fadeInSubtitle {
-            to {
+            0% {
+                opacity: 0;
+            }
+            100% {
                 opacity: 1;
             }
         }
@@ -70,7 +76,7 @@
             overflow: hidden;
             background: linear-gradient(90deg, #333, #666, #333);
             opacity: 0; /* Start hidden */
-            animation: fadeInButton 2s forwards; /* Fade-in effect for the buttons */
+            animation: fadeInButton 1s forwards; /* Fade-in effect for the buttons */
         }
 
         @keyframes fadeInButton {
@@ -84,12 +90,12 @@
             }
         }
 
-        .button:nth-child(3) {
-            animation-delay: 4s; /* Delay before the first button starts fading in */
+        .button:nth-of-type(1) {
+            animation-delay: 1.5s; /* Delay before the first button starts fading in */
         }
 
-        .button:nth-child(4) {
-            animation-delay: 5s; /* Delay before the second button starts fading in */
+        .button:nth-of-type(2) {
+            animation-delay: 2s; /* Delay before the second button starts fading in */
         }
 
         .button::before {
@@ -101,11 +107,36 @@
             height: 100%;
             background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
             animation: shimmer 2s infinite;
-            animation-delay: 2s; /* Delay before the shimmer effect starts */
+            animation-delay: 1.5s; /* Delay before the shimmer effect starts */
         }
 
         @keyframes shimmer {
             0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .button:active {
+            transform: scale(1.1); /* Zoom in effect */
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Queen-Anuu-MultiDevice</div>
+        <div class="subtitle">How do you want to pair?</div>
+        <a href="https://queen-anuu-md.vercel.app/qr.html" class="button">QR</a>
+        <a href="https://youtube.com" class="button">Enter Code</a>
+    </div>
+</body>
+</html>
                 left: -100%;
             }
             100% {
