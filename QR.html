@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan QR</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .qr-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .qr-code img {
+            width: 300px;
+            height: 300px;
+        }
+        #countdown {
+            margin-top: 20px;
+            font-size: 18px;
+            color: gray;
+        }
+        #progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            margin-top: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #progress {
+            height: 100%;
+            background-color: #00bfa5;
+            width: 100%;
+            transition: width 1s linear;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #00bfa5;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            const qrDiv = document.getElementById('qr-code');
+            qrDiv.innerHTML = ''; // Clear the current QR code
+            const qr = qrcode(0, 'L');
+            qr.addData(Math.random().toString(36).substring(2)); // Generate random data
+            qr.make();
+            qrDiv.innerHTML = qr.createImgTag(10); // Medium QR code
+        }
+
+        function startTimer() {
+            let timeLeft = 30;
+            const countdown = document.getElementById('countdown');
+            const progress = document.getElementById('progress');
+
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = `QR Code will expire in ${timeLeft} seconds`;
+
+                // Update the progress bar
+                const progressWidth = (timeLeft / 30) * 100;
+                progress.style.width = progressWidth + '%';
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    generateQRCode(); // Generate a new QR code after 30 seconds
+                    startTimer(); // Restart the timer
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            generateQRCode();
+            startTimer();
+        }
+
+        function redirectToGitHub() {
+            window.location.href = "https://github.com";
+        }
+    </script>
+</head>
+<body>
+    <div class="qr-container">
+        <div id="qr-code" class="qr-code"></div>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+    </div>
+    <div id="countdown">QR Code will expire in 30 seconds</div>
+    <footer onclick="redirectToGitHub()">If the QR code does not work, use the pair code</footer>
+</body>
+</html>
