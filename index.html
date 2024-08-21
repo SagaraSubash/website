@@ -137,6 +137,37 @@
     </div>
 </body>
 </html>
+            animation: shimmer 2s infinite;
+            animation-delay: 1.5s; /* Delay before the shimmer effect starts */
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .button:active {
+            transform: scale(1.1); /* Zoom in effect */
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Queen-Anuu-MultiDevice</div>
+        <div class="subtitle">How do you want to pair?</div>
+        <a href="https://queen-anuu-md.vercel.app/qr.html" class="button">QR</a>
+        <a href="https://youtube.com" class="button">Enter Code</a>
+    </div>
+</body>
+</html>
                 left: -100%;
             }
             100% {
